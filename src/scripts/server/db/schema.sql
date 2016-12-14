@@ -23,15 +23,28 @@ create table tournaments (
     id serial primary key,
     admin integer references users(id),
     level competition_level,
-    date text
+    tournament_date text,
+    player_count integer
 );
 
 create table users_tournaments_relations (
     id serial primary key,
     admin boolean default 'false',
     user_id integer references users(id),
-    tournament_id integer references tournaments(id)
+    tournament_id integer references tournaments(id),
+    swiss_place integer,
+    overall_place integer,
+    strength_of_schedule integer,
+    used_bye boolean,
 );
+
+create table matches (
+    id serial primary key,
+    player_1 integer references users(id),
+    player_2 integer references users(id),
+    parent_tournament integer references tournaments(id),
+    match_json text
+)
 
 create table decks (
     id serial primary key,
@@ -42,11 +55,8 @@ create table decks (
     mwl_legal boolean,
     archetype varchar(80),
     ruleset varchar(40),
-    swiss_place integer,
-    overall_place integer,
     wins integer,
     losses integer,
-    win_type win,
     identity varchar(40)
 );
 

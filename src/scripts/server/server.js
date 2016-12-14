@@ -34,9 +34,14 @@ var db = app.get('db');
 
 app.use(express.static(__dirname + '/../../../dist')); //serve all of our static front-end files from our server.
 
+const cardCtrl = require('./controllers/cardCtrl.js'),
+    tourneyCtrl = require('./controllers/tourneyCtrl.js');
+
 const skyscanner = require('./api/skyscanner.js');
 
 app.post('/api/skyscanner/from/', skyscanner.flightsFrom);
+
+// app.get('/api/cards/all', cardCtrl.getAllCards)
 
 // app.post('/api/cards/refresh', )
 let cycles = ['core', 'genesis', 'spin', 'lunar', 'sansan', 'mumbad', 'flashpoint', 'red sand'];
@@ -44,16 +49,16 @@ let cards = require('./api/cardData.js');
 
 cards = cards.cardData;
 
-let insertCardToDb = (obj) => {
-    db.insert_new_card([obj.position, obj.cost, obj.deck_limit, obj.faction_code, obj.side_code, obj.flavor, obj.img_src, obj.keywords, obj.text, obj.type_code, obj.uniqueness, obj.cycle, (obj.minimum_deck_size || false), (obj.faction_cost || obj.influence_limit)], (err, res) => {
-        if (err) console.log(err);
-        else console.log("Successfully added card");
-    });
-};
+// let insertCardToDb = (obj) => {
+//     db.insert_new_card([obj.position, obj.cost, obj.deck_limit, obj.faction_code, obj.side_code, obj.flavor, obj.img_src, obj.keywords, obj.text, obj.type_code, obj.uniqueness, obj.cycle, (obj.minimum_deck_size || false), (obj.faction_cost || obj.influence_limit)], (err, res) => {
+//         if (err) console.log(err);
+//         else console.log("Successfully added card");
+//     });
+// };
 
-let cardFlag;
+// let cardFlag;
 
-cards.map(insertCardToDb);
+// cards.map(insertCardToDb);
 
 cards.map((e, i) => {
     let code = e.code.substring(0, 2);
