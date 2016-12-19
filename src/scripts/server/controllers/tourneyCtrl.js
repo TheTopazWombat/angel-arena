@@ -1,5 +1,7 @@
-const server = require('../server');
-const db = require(server.db);
+const app = require('../server');
+const db = app.get('db');
+
+// console.log(db);
 
 module.exports = {
     //Get functions

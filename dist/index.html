@@ -1,26 +1,32 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html ng-app="angel-arena">
+
+<head>
     <meta charset="utf-8">
     <title>Gulp App Environment</title>
     <link rel="stylesheet" href="./www/styles/master.min.css" media="screen" charset="utf-8">
     <link rel="stylesheet" href="./assets/styles/reset.css" media="screen" charset="utf-8">
-    <script defer src="./www/scripts/bundle.js" charset="utf-8"></script>
-  </head>
-  <body ng-app="angel-arena">
+</head>
+
+<body>
     <div class="welcome" ng-controller="masterCtrl">
-      <form ng-submit="getAllCards()">
+        <header></header>
+        <ui-router></ui-router>
+
+        <!--<form ng-submit="getAllCards()">
         <input type="text" placeholder="Get ye cards" ng-model="origin">
       </form>
       <div ng-repeat="card in allCards">
         {{card.title}}
         {{card.type_code}}
         {{card.faction_code}}
-        <img src="{{card.img_src}}" alt="">
-      </div>
+        <img src="{{card.img_src}}" alt="">-->
+        <!--</div>-->
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
-    <script></script>
-  </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
+    <script defer src="./www/scripts/bundle.js" charset="utf-8"></script>
+</body>
+
 </html>

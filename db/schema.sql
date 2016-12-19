@@ -2,7 +2,7 @@ create database angel_arena;
 
 create type side as enum ('corp', 'runner');
 
-create type faction as enum ('anarch', 'criminal', 'shaper', 'sunny-lebeau', 'adam', 'apex', 'haas-bioroid', 'weyland-consortium', 'jinteki', 'nbn', 'neutral');
+create type faction as enum ('anarch', 'criminal', 'shaper', 'sunny', 'adam', 'apex', 'haas', 'weyland', 'jinteki', 'nbn', 'neutral');
 
 create type win as enum ('points', 'flatline', 'decking', 'time')   ;
 
@@ -19,21 +19,13 @@ create table users (
     email text
 );
 
-create table cards (
-    id varchar(40) primary key,
-    cost integer,
-    deck_limit integer,
-    faction faction,
-    side side,
-    flavor varchar(400),
-    img_src varchar(355),
-    subtypes_json text,
-    text_box text,
-    type card_type,
-    is_unique boolean,
-    cycle varchar(40),
-    min_deck_size integer default null,
-    influence integer
+create table players (
+    id serial primary key,
+    full_name varchar(80),
+    super_bye boolean,
+    corp_id integer references cards(id),
+    runner_id integer references cards(id),
+    parent_tournament integer references tournaments(id)
 );
 
 create table tournaments (
@@ -43,15 +35,6 @@ create table tournaments (
     tournament_date text,
     player_count integer,
     last_legal_pack varchar(40)    
-);
-
-create table players (
-    id serial primary key,
-    full_name varchar(80),
-    super_bye boolean,
-    corp_id varchar(40) references cards(id),
-    runner_id varchar(40) references cards(id),
-    parent_tournament integer references tournaments(id)
 );
 
 create table users_tournaments_relations (
@@ -78,7 +61,7 @@ create table decks (
     side side,
     faction faction,
     player integer references players(id),
-    cards_json text,
+    cards integer[],
     mwl_legal boolean,
     archetype varchar(80),
     ruleset varchar(40),
@@ -88,4 +71,20 @@ create table decks (
 );
 
 
+create table cards (
+    id serial primary key,
+    cost integer,
+    deck_limit integer,
+    faction faction,
+    side side,
+    flavor varchar(255),
+    img_src varchar(255),
+    subtypes text[],
+    text_box text,
+    type card_type,
+    is_unique boolean,
+    cycle varchar(40),
+    min_deck_size integer default null,
+    influence integer
+);
 

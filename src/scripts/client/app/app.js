@@ -1,1 +1,1 @@
-angular.module("angel-arena", []);
+angular.module("angel-arena", ["ui.router"]);
