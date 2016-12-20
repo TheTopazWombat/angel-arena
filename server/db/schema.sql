@@ -42,7 +42,8 @@ create table tournaments (
     level competition_level,
     tournament_date text,
     player_count integer,
-    last_legal_pack varchar(40)    
+    last_legal_pack varchar(40),
+    name varchar(355)
 );
 
 create table players (
