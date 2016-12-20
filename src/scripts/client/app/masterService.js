@@ -14,6 +14,8 @@ angular.module("angel-arena").service("masterService", ['$http', function($http)
         });
     };
 
+    this.tournaments = [];
+
     //   this.fillCardDb = () => {
     //     return $http({
     //         method: 'GET',

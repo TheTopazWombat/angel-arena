@@ -1,0 +1,16 @@
+<div class="tournament-container">
+    <form class="new-tournament">
+        <h2>Add New Tournament</h2>
+        <input type="text" name="" placeholder="Tournament Level" ng-model="tourney.level">
+        <input type="text" name="" placeholder="Last Legal Pack" ng-model="tourney.last_legal_pack">
+        <input type="text" name="" Placeholder="Tournament Name" ng-model="tourney.name">
+    </form ng-submit="addTournament(tourney)">
+    <button type="">Add Tournament</button> {{test}}
+
+    <div ng-repeat="t in tournaments">
+        {{t}}
+
+    </div>
+
+
+</div>

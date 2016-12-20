@@ -5,10 +5,11 @@ angular.module('angel-arena')
         $stateProvider
             .state('landing', {
                 url: '/',
-                templateUrl: './assets/landing.html'
+                templateUrl: './assets/views/landing.html'
             })
             .state('tournaments', {
                 url: '/tournaments',
-                templateUrl: './assets/tournaments.html'
+                templateUrl: './assets/views/tournaments.html',
+                controller: 'tournamentCtrl'
             })
     });
